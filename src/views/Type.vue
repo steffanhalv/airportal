@@ -57,7 +57,8 @@
                 </div>
                 <div v-for="row in table" class="my-2 rounded flex bg-slate-100 p-4">
                     <div>
-                        <div class="grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Updated" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
+                        <div class="grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" />
+                            <InputUniversal v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Updated" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
                             <div class="text-right flex">
                                 <button type="" @click="remove(row)" class="w-6/12 bg-red-400 py-2 shadow-slate-400 shadow rounded bg-gradient-to-bl from-red-500 hover:bg-red-500 text-slate-100 ml-1">
                                     Remove
@@ -147,11 +148,13 @@
         defineAsyncComponent
     } from "vue";
     import Editor from "@/components/Editor.vue";
+    import InputUniversal from "@/components/InputUniversal.vue";
     import moment from "moment";
     export default {
         setup() {},
         components: {
-            Editor
+            Editor,
+            InputUniversal
         },
         inject: ["io"],
         props: {

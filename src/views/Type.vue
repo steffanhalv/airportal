@@ -45,13 +45,13 @@
                 </div>
                 <div class="my-2 rounded flex bg-slate-100 p-4">
                     <div class="gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)">
-                        <input placeholder="id" readonly="" class="p-2" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" /><input placeholder="Created" readonly="" class="p-2" /><button type="" @click="create(obj)" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-2">
+                        <input placeholder="id" readonly="" class="p-2" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" /><input placeholder="Created" readonly="" class="p-2" /><button type="" @click="create(obj)" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-400 from-emerald-300 hover:bg-emerald-500 text-slate-100 ml-2">
                             Create
                         </button>
                     </div>
                 </div>
-                <div class="my-2 rounded flex bg-slate-100 p-4">
-                    <input v-model="search" placeholder="search..." @keydown.enter="list" class="shadow rounded px-5 grow" /> <button type="" @click="list" class="shadow-slate-400 shadow rounded bg-gradient-to-bl bg-blue-500 from-blue-400 hover:bg-blue-600 text-slate-100 px-6 ml-2 py-2.5">
+                <div class="my-2 rounded grid bg-slate-100 p-4" :class="'grid-cols-' + (fieldsSelected.length + 4)">
+                    <input v-model="search" placeholder="search..." @keydown.enter="list" class="shadow rounded px-5 grow" :class="'col-span-' + (fieldsSelected.length + 3)" /> <button type="" @click="list" class="shadow-slate-400 shadow rounded bg-gradient-to-bl bg-blue-500 from-blue-400 hover:bg-blue-600 text-slate-100 ml-2 py-2.5">
                         Search
                     </button>
                 </div>
@@ -59,9 +59,9 @@
                     <div>
                         <div class="grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
                             <div class="text-right flex">
-                                <button type="" @click="remove(row)" class="w-6/12 bg-red-400 p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl from-red-500 hover:bg-red-600 text-slate-100 ml-1">
+                                <button type="" @click="remove(row)" class="w-6/12 bg-red-400 py-2 shadow-slate-400 shadow rounded bg-gradient-to-bl from-red-500 hover:bg-red-500 text-slate-100 ml-1">
                                     Remove
-                                </button> <button type="" @click="save(row)" class="w-6/12 p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-1">
+                                </button> <button type="" @click="save(row)" class="w-6/12 py-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-400 from-emerald-300 hover:bg-emerald-500 text-slate-100 ml-1">
                                     Save
                                 </button>
                             </div>

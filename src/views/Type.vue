@@ -7,21 +7,21 @@
                 </h2>
             </div>
             <div class="text-center mt-6 mb-4 p-4 rounded bg-slate-100 p-4">
-                <button @click="view='main'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='main'">
+                <button @click="view='main'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3 mb-2" :disabled="view==='main'">
                     {{instance?.title?.en}}
-                </button><button @click="view='custom'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" v-if="decodedContent" :disabled="view==='custom'">
+                </button><button @click="view='custom'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3 mb-2" v-if="decodedContent" :disabled="view==='custom'">
                     Custom view
-                </button><button @click="view='fields'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='fields'">
+                </button><button @click="view='fields'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3 mb-2" :disabled="view==='fields'">
                     Fields
-                </button><button @click="view='roles'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='roles'">
+                </button><button @click="view='roles'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3 mb-2" :disabled="view==='roles'">
                     Roles
-                </button><button @click="view='instance'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='instance'">
+                </button><button @click="view='instance'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3 mb-2" :disabled="view==='instance'">
                     Instance
-                </button><button @click="view='custom-editor'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='custom-editor'">
+                </button><button @click="view='custom-editor'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3 mb-2" :disabled="view==='custom-editor'">
                     Custom editor
-                </button><button @click="view='type'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 mr-1 px-3" :disabled="view==='type'">
+                </button><button @click="view='type'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 mr-1 px-3 mb-2" :disabled="view==='type'">
                     Type
-                </button><input :value="moment(instance.updatedAt).format('DD.MM.YY HH:mm:ss')" class="w-36 py-2 px-2 rounded mx-0.5 shadow-slate-200 shadow text-slate-700" /> <button class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-emerald-50 hover:text-white bg-emerald-400 hover:bg-emerald-500 px-3" @click="saveType()">
+                </button><input :value="moment(instance.updatedAt).format('DD.MM.YY HH:mm:ss')" class="w-36 py-2 px-2 rounded mx-0.5 shadow-slate-200 shadow text-slate-700 mb-2" /> <button class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-emerald-50 hover:text-white bg-emerald-400 hover:bg-emerald-500 px-3 mb-2" @click="saveType()">
                     Save
                 </button>
             </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div v-for="row in table" class="my-2 rounded flex bg-slate-100 p-4">
                     <div>
-                        <div class="grid-cols-9 grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
+                        <div class="grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
                             <div class="text-right flex">
                                 <button type="" @click="remove(row)" class="w-6/12 bg-red-400 p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl from-red-500 hover:bg-red-600 text-slate-100 ml-1">
                                     Remove
@@ -90,55 +90,52 @@
             <div v-else-if="view==='custom-editor'" class="my-2 rounded flex bg-slate-100 p-4">
                 <Editor @change="instance.dashboardValue = $event" :src="instance.dashboardValue" />
             </div>
-            <div v-else-if="view==='type'" class="my-2 rounded flex bg-slate-100 p-4">
-                <div>
-                    <label>
+            <div v-else-if="view==='type'" class="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-2 rounded flex bg-slate-100 p-4 grid gap-2">
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         ID
-                    </label><input v-model="instance._id" readonly="readonly" />
+                    </label><input v-model="instance._id" readonly="readonly" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <label>
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         Title
-                    </label><input v-model="instance.title.en" v-if="instance.title" />
+                    </label><input v-model="instance.title.en" v-if="instance.title" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <label>
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         Slug
-                    </label><input v-model="instance.slug" />
+                    </label><input v-model="instance.slug" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <label>
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         Status
-                    </label><input v-model="instance.status" />
+                    </label><input v-model="instance.status" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <label>
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         Owner
-                    </label><input v-model="instance.owner" />
+                    </label><input v-model="instance.owner" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <label>
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         Owner Group
-                    </label><input v-model="instance.owner_group" />
+                    </label><input v-model="instance.owner_group" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <label>
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         Updated
-                    </label><input v-model="instance.updatedAt" />
+                    </label><input v-model="instance.updatedAt" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <label>
+                <div class="p-2">
+                    <label class="font-bold inline-block w-full mb-2">
                         Created
-                    </label><input v-model="instance.createdAt" />
+                    </label><input v-model="instance.createdAt" class="p-2 shadow rounded w-full" />
                 </div>
-                <div>
-                    <button type="" class="green" @click="saveType()">
-                        Save
-                    </button>
-                </div>
-                <div>
-                    <button type="" class="red" @click="removeType()">
+                <div class="col-span-full p-2 w-full">
+                    <button type="" class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-red-50 hover:text-white bg-red-400 hover:bg-red-500 px-3" @click="removeType()">
                         Delete
+                    </button><button type="" class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-emerald-50 hover:text-white bg-emerald-400 hover:bg-emerald-500 px-3 float-right" @click="saveType()">
+                        Save
                     </button>
                 </div>
             </div>

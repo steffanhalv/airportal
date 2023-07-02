@@ -1,16 +1,16 @@
 <template>
-    <div style="height:100%;width:160px;font-family:Arial, Helvetica, sans-serif;background:linear-gradient(215deg, rgba(58,66,64,1) 0%, rgba(33,33,33,1) 100%);background-color:rgb(58,66,64)">
+    <div class="w-44 h-full text-slate-100 bg-gradient-to-br from-slate-800 bg-slate-700">
         <div v-for="page in pages">
-            <div style="box-sizing:border-box;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px;font-size:15px;position:relative" class="menu-button" :class="page.path === current ? 'active' : ''" @click="$router.push(page.path)">
-                <div style="background-color:#edebebff;width:10px;position:absolute;right:0px;clip-path:polygon(100% 0%, 100% 100%, 0% 50%);top:9px;height:20px" v-if="page.path === current"></div>
+            <div style="box-sizing:border-box;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px;position:relative" class="menu-button" :class="page.path === current ? 'active' : ''" @click="$router.push(page.path)">
+                <div style="background-color:#edebebff;width:10px;position:absolute;right:0px;clip-path:polygon(100% 0%, 100% 100%, 0% 50%);top:13px;height:20px" v-if="page.path === current"></div>
                 {{page.label}}
             </div>
             <div>
             </div>
         </div>
-        <hr />
+        <hr style="border-color:#3b517dff;border-top-width:3px" />
         <div v-for="type in types">
-            <div style="box-sizing:border-box;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px;font-size:15px;position:relative" class="menu-button" :class="'/admin/types/' + type.slug === current ? 'active' : ''" @click="$router.push('/admin/types/' + type.slug)">
+            <div style="box-sizing:border-box;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px;position:relative" class="menu-button" :class="'/admin/types/' + type.slug === current ? 'active' : ''" @click="$router.push('/admin/types/' + type.slug)">
                 <div style="background-color:#edebebff;width:10px;position:absolute;right:0px;clip-path:polygon(100% 0%, 100% 100%, 0% 50%);top:9px;height:20px" v-if="'/admin/types/' + type.slug === current"></div>
                 {{type.title.en}}
             </div>
@@ -18,7 +18,7 @@
             </div>
         </div>
         <div>
-            <div style="box-sizing:border-box;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px;font-size:15px;position:relative" class="menu-button" @click="add()">
+            <div style="box-sizing:border-box;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px;position:relative" class="menu-button" @click="add()">
 
                 + Add
             </div>

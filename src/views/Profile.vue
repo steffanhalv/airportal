@@ -2,9 +2,9 @@
     <div style="font-family:Arial, Helvetica, sans-serif">
         <div style="width:100%;height:100%;overflow:auto;background-color:#edebebff">
             <div style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px">
-                <h2>
+                <h2 class="text-4xl mb-4">
                     Profile
-                </h2> <input type="" name="" style="margin-right:5px;width:167px" /><button type="">
+                </h2> <input type="" name="" /><button type="">
                     Filter
                 </button>
             </div>

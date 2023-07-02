@@ -21,7 +21,7 @@
                     Custom editor
                 </button><button @click="view='type'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 mr-1 px-3 mb-2" :disabled="view==='type'">
                     Type
-                </button><input :value="moment(instance.updatedAt).format('DD.MM.YY HH:mm:ss')" class="w-36 py-2 px-2 rounded mx-0.5 shadow-slate-200 shadow text-slate-700 mb-2" /> <button class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-emerald-50 hover:text-white bg-emerald-400 hover:bg-emerald-500 px-3 mb-2" @click="saveType()">
+                </button><input :value="moment(instance.updatedAt).format('DD.MM.YY HH:mm:ss')" class="w-36 py-2 px-2 mx-0.5 rounded shadow-slate-200 shadow text-slate-700 mb-2" /> <button class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-emerald-50 hover:text-white bg-emerald-400 hover:bg-emerald-500 px-3 mb-2" @click="saveType()">
                     Save
                 </button>
             </div>
@@ -45,19 +45,19 @@
                 </div>
                 <div class="my-2 rounded flex bg-slate-100 p-4">
                     <div class="gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)">
-                        <input placeholder="id" readonly="" class="p-2" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" /><input placeholder="Created" readonly="" class="p-2" /><button type="" @click="create(obj)" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-400 from-emerald-300 hover:bg-emerald-500 text-slate-100 ml-2">
+                        <input placeholder="id" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Updated" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Created" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><button type="" @click="create(obj)" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-400 from-emerald-300 hover:bg-emerald-500 text-slate-100 ml-2">
                             Create
                         </button>
                     </div>
                 </div>
                 <div class="my-2 rounded grid bg-slate-100 p-4" :class="'grid-cols-' + (fieldsSelected.length + 4)">
-                    <input v-model="search" placeholder="search..." @keydown.enter="list" class="shadow rounded px-5 grow" :class="'col-span-' + (fieldsSelected.length + 3)" /> <button type="" @click="list" class="shadow-slate-400 shadow rounded bg-gradient-to-bl bg-blue-500 from-blue-400 hover:bg-blue-600 text-slate-100 ml-2 py-2.5">
+                    <input v-model="search" placeholder="search..." @keydown.enter="list" class="rounded shadow-slate-200 shadow text-slate-700 px-5 grow" :class="'col-span-' + (fieldsSelected.length + 3)" /> <button type="" @click="list" class="shadow-slate-400 shadow rounded bg-gradient-to-bl bg-blue-500 from-blue-400 hover:bg-blue-600 text-slate-100 ml-2 py-2.5">
                         Search
                     </button>
                 </div>
                 <div v-for="row in table" class="my-2 rounded flex bg-slate-100 p-4">
                     <div>
-                        <div class="grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
+                        <div class="grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Updated" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
                             <div class="text-right flex">
                                 <button type="" @click="remove(row)" class="w-6/12 bg-red-400 py-2 shadow-slate-400 shadow rounded bg-gradient-to-bl from-red-500 hover:bg-red-500 text-slate-100 ml-1">
                                     Remove

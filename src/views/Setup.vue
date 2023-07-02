@@ -1,7 +1,7 @@
 <template>
     <div style="display:flex;height:100%;font-family:Arial, Helvetica, sans-serif">
         <div style="width:100%;flex-grow:1;flex:1;height:100%;overflow:auto" class="bg-slate-300 from-slate-400 bg-gradient-to-br">
-            <div style="box-sizing:border-box;padding-left:30px;padding-right:30px;padding-top:30px;padding-bottom:30px;margin-left:auto;margin-right:auto;margin-top:80px;width:360px" class="rounded-md shadow-slate-700 shadow-lg bg-gradient-to-b from-slate-100 bg-slate-50">
+            <div style="box-sizing:border-box;padding-left:30px;padding-right:30px;padding-top:30px;padding-bottom:30px;margin-left:auto;margin-right:auto;margin-top:80px;width:360px" class="shadow-slate-500 rounded-md shadow-lg bg-gradient-to-b from-slate-100 bg-slate-50">
                 <div style="display:inline-block;width:100%">
                     <h3 style="text-align:center" class="text-slate-600 mb-6 text-2xl">
                         Setup Airportal

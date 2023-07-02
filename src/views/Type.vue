@@ -1,6 +1,6 @@
 <template>
     <div class="p-6">
-        <div>
+        <div class="flex flex-col h-full">
             <div>
                 <h2 class="text-4xl">
                     {{instance?.title?.en}}
@@ -78,16 +78,16 @@
                     </button>
                 </div>
             </div>
-            <div v-else-if="view==='fields'" class="my-2 rounded flex bg-slate-100 p-4">
+            <div v-else-if="view==='fields'" class="my-2 rounded flex-1 bg-slate-100 p-4">
                 <Editor @change="instance.fieldsValue = $event" :src="instance.fieldsValue" />
             </div>
-            <div v-else-if="view==='roles'" class="my-2 rounded flex bg-slate-100 p-4">
+            <div v-else-if="view==='roles'" class="my-2 rounded flex-1 bg-slate-100 p-4">
                 <Editor @change="instance.rolesValue = $event" :src="instance.rolesValue" />
             </div>
-            <div v-else-if="view==='instance'" class="my-2 rounded flex bg-slate-100 p-4">
+            <div v-else-if="view==='instance'" class="my-2 rounded flex-1 bg-slate-100 p-4">
                 <Editor @change="instance.instanceValue = $event" :src="instance.instanceValue" />
             </div>
-            <div v-else-if="view==='custom-editor'" class="my-2 rounded flex bg-slate-100 p-4">
+            <div v-else-if="view==='custom-editor'" class="my-2 rounded flex-1 bg-slate-100 p-4">
                 <Editor @change="instance.dashboardValue = $event" :src="instance.dashboardValue" />
             </div>
             <div v-else-if="view==='type'" class="grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 my-2 rounded flex bg-slate-100 p-4 grid gap-2">

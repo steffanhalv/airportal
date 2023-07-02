@@ -1,75 +1,70 @@
 <template>
-    <div style="display:flex;height:100%;font-family:Arial, Helvetica, sans-serif">
-        <div style="width:100%;flex-grow:1;flex:1;height:100%;overflow:auto;background-color:#edebebff" class="editor">
-            <div style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px">
-                <h2 style="color:#2b2b2bff;font-weight:100;font-size:35px">
-                    Users
-                </h2>
-            </div>
-            <div>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:15px;padding-bottom:15px;margin-left:20px;margin-right:20px;background-color:#86a0b3ff;position:relative;text-align:center;margin-top:10px;border-top-left-radius:3px;border-top-right-radius:3px">
-                    <button type="" @click="page--, list()" style="float:left;margin-top:-5px" class="dark" :disabled="page <= 1">
-                        Previous page
-                    </button><span style="color:#38454dff">
+    <div class="p-6">
+        <div class="editor">
+            <h2 class="text-4xl">
+                Users
+            </h2>
+            <div class="my-6">
+                <div class="grid-cols-3 grid p-4 my-2 rounded flex bg-slate-100 p-4">
+                    <button type="" @click="page--, list()" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page <= 1">
+                        Previous Page
+                    </button><span class="text-slate-600 py-2 text-center">
                         Page {{ page }} of {{ Math.ceil(response?.total / response?.limit) }} ({{ response?.skip }} -
                         {{ response?.skip + response?.data?.length }} of {{ response?.total }})
-                    </span><button type="" @click="page++, list()" style="float:right;margin-top:-5px" class="dark" :disabled="page >= Math.ceil(response?.total / response?.limit)">
-                        Next page
+                    </span><button type="" @click="page++, list()" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page >= Math.ceil(response?.total / response?.limit)">
+                        Next Page
                     </button>
                 </div>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;background-color:#86a0b3ff;margin-bottom:10px" class="row">
-                    <div style="display:inline-block">
-                        <input placeholder="ID" readonly="readonly" /> <input placeholder="email" v-model="email" /> <input placeholder="password" v-model="password" type="password" />
-                        <div style="display:inline-block">
-                            <div v-for="(permission, i) in permissions" style="margin-right:6px;margin-left:5px">
-                                <button @click="permissions.splice(i, 1)" style="display:inline-block" :disabled="permissions.length <= 1">
+                <div class="my-2 rounded flex bg-slate-100 p-4">
+                    <div class="gap-1 grid-cols-9 grid">
+                        <input placeholder="ID" readonly="readonly" class="p-2" /> <input placeholder="Email" v-model="email" class="p-2" /> <input placeholder="Password" v-model="password" type="password" class="p-2" />
+                        <div>
+                            <div v-for="(permission, i) in permissions" class="grid-cols-3 grid">
+                                <button @click="permissions.splice(i, 1)" :disabled="permissions.length <= 1" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-red-500 from-red-400 hover:bg-red-600 text-slate-100 mr-2">
                                     Remove
-                                </button> <input placeholder="permissions" v-model="permissions[i]" style="margin-right:5px" /> <button v-if="!permissions.length || i === permissions.length - 1" @click="permissions.push('')" style="display:inline-block">
+                                </button> <input placeholder="permissions" v-model="permissions[i]" class="p-2" /> <button v-if="!permissions.length || i === permissions.length - 1" @click="permissions.push('')" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-2">
                                     Add
                                 </button>
                             </div>
-                        </div> <input placeholder="locale" v-model="locale" /> <input placeholder="owner group" v-model="owner_group" /> <input placeholder="Updated" readonly="readonly" style="width:185px;height:29px" /> <input placeholder="Created" readonly="readonly" style="width:185px" />
-                    </div>
-                    <div style="display:inline-block;float:right">
-                        <button @click="create({ email, password, locale, permissions: permissions, owner_group })">
+                        </div> <input placeholder="Locale" v-model="locale" class="p-2" /> <input placeholder="Owner Group" v-model="owner_group" class="p-2" /> <input placeholder="Updated" readonly="readonly" class="p-2" /> <input placeholder="Created" readonly="readonly" class="p-2" /><button @click="create({ email, password, locale, permissions: permissions, owner_group })" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-2">
                             Create
                         </button>
                     </div>
                 </div>
-                <div style="box-sizing:border-box;padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;background-color:#87acccff;border-top-left-radius:3px;border-top-right-radius:3px" class="row">
-                    <input style="margin-right:5px;width:calc(100% - 110px);padding-top:15px;padding-bottom:15px" v-model="search" placeholder="search..." @keydown.enter="list" /> <button @click="list" class="dark" style="padding-top:15px;padding-bottom:15px;width:100px">
+                <div class="my-2 rounded flex bg-slate-100 p-4">
+                    <input v-model="search" placeholder="Search..." @keydown.enter="list" class="shadow rounded px-5 grow" /> <button @click="list" class="shadow-slate-400 shadow rounded bg-gradient-to-bl bg-blue-500 from-blue-400 hover:bg-blue-600 text-slate-100 px-6 ml-2 py-2.5">
                         Search
                     </button>
                 </div>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;margin-top:0px;margin-bottom:0px;position:relative" v-for="usr in users" class="row">
-                    <div style="display:inline-block;float:right">
-                        <button @click="remove(usr)" class="red" style="margin-right:2px" :disabled="user?.value?._id === usr._id || user?._id === usr._id">
-                            Remove
-                        </button> <button @click="save(usr)" class="green">
-                            Save
-                        </button>
-                    </div>
-                    <div style="display:inline-block;">
-                        <input placeholder="ID" v-model="usr._id" readonly="" /> <input placeholder="email" v-model="usr.email" /> <input placeholder="password" v-model="usr.password" type="password" />
-                        <div style="display:inline-block">
-                            <div v-for="(permission, i) in usr.permissions" style="margin-right:6px;margin-left:5px">
-                                <button @click="usr.permissions.splice(i, 1)" style="display:inline-block" :disabled="usr.permissions.length <= 1">
+                <div v-for="usr in users" class="my-2 rounded flex bg-slate-100 p-4">
+                    <div class="grid-cols-9 grow gap-1 grid">
+                        <input placeholder="ID" v-model="usr._id" readonly="" class="p-2" /> <input placeholder="email" v-model="usr.email" class="p-2" /> <input placeholder="password" v-model="usr.password" type="password" class="p-2" />
+                        <div>
+                            <div v-for="(permission, i) in usr.permissions" class="grid-cols-3 grid">
+                                <button @click="usr.permissions.splice(i, 1)" :disabled="usr.permissions.length <= 1" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-red-500 from-red-400 hover:bg-red-600 text-slate-100 mr-2">
                                     Remove
-                                </button> <input placeholder="permissions" v-model="usr.permissions[i]" style="margin-right:5px" /> <button v-if="!usr.permissions.length || i === usr.permissions.length - 1" @click="usr.permissions.push('')" style="display:inline-block">
+                                </button> <input placeholder="permissions" v-model="usr.permissions[i]" class="p-2" /> <button v-if="!usr.permissions.length || i === usr.permissions.length - 1" @click="usr.permissions.push('')" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-2">
                                     Add
                                 </button>
                             </div>
-                        </div> <input placeholder="locale" v-model="usr.locale" /> <input placeholder="owner group" v-model="usr.owner_group" /> <input placeholder="Updated" v-model="usr.updatedAt" readonly="" style="width:185px" /> <input placeholder="Created" v-model="usr.createdAt" readonly="" style="width:185px" />
+                        </div> <input placeholder="locale" v-model="usr.locale" class="p-2" /> <input placeholder="owner group" v-model="usr.owner_group" class="p-2" /> <input placeholder="Updated" readonly="" :value="moment(usr.updatedAt).format('DD.MM.YY HH:mm:ss')" class="p-2" /> <input placeholder="Created" readonly="" :value="moment(usr.createdAt).format('DD.MM.YY HH:mm:ss')" class="p-2" />
+                        <div class="grid-cols-2 grid">
+                            <button @click="remove(usr)" class="bg-red-400 p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl from-red-500 hover:bg-red-600 text-slate-100 ml-2" :disabled="user?.value?._id === usr._id || user?._id === usr._id">
+                                Remove
+                            </button> <button @click="save(usr)" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-2">
+                                Save
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;margin-top:10px;margin-bottom:20px;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;background-color:#86a0b3ff;position:relative;text-align:center">
-                    <button @click="page--, list()" style="float:left;margin-top:-5px" class="dark" :disabled="page <= 1">
-                        Previous page
-                    </button><span style="color:#38454dff">
+                <div class="grid-cols-3 grid p-4 my-2 rounded flex bg-slate-100 p-4">
+                    <button @click="page--, list()" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page <= 1">
+                        Previous Page
+                    </button><span class="text-slate-600 py-2 text-center">
                         Page {{ page }} of {{ Math.ceil(response?.total / response?.limit) }} ({{ response?.skip }} - {{
                             response?.skip + response?.data?.length }} of {{ response?.total }})
-                    </span><button type="" @click="page++, list()" style="float:right;margin-top:-5px" class="dark" :disabled="page >= Math.ceil(response?.total / response?.limit)">
-                        Next page
+                    </span><button type="" @click="page++, list()" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page >= Math.ceil(response?.total / response?.limit)">
+                        Next Page
                     </button>
                 </div>
             </div>
@@ -77,8 +72,30 @@
     </div>
 </template>
 <script>
+    import moment from "moment";
     export default {
         inject: ["io", "user"],
+        data: () => ({
+            email: "",
+            owner_group: "",
+            password: "",
+            locale: "",
+            owner_group: "",
+            permissions: ["user"],
+            response: null,
+            search: "",
+            limit: 25,
+            page: 1,
+            moment
+        }),
+        computed: {
+            users() {
+                return this.response?.data || []
+            }
+        },
+        created() {
+            this.list()
+        },
         methods: {
             async create(obj) {
                 const response = await this.io.service("users").create(obj);
@@ -121,111 +138,8 @@
                 this.locale = "";
                 this.permissions = ["user"]
             }
-        },
-        created() {
-            this.list()
-        },
-        computed: {
-            users() {
-                return this.response?.data || []
-            }
-        },
-        data: () => ({
-            email: "",
-            owner_group: "",
-            password: "",
-            locale: "",
-            owner_group: "",
-            permissions: ["user"],
-            response: null,
-            search: "",
-            limit: 25,
-            page: 1
-        })
+        }
     };
 </script>
-<style>
-    html,
-    body,
-    #app {
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-</style>
-<style scoped>
-    label {
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-
-    .editor button:hover {
-        background-color: #ffffffff;
-    }
-
-    .editor button {
-        border-style: none;
-        padding-top: 7px;
-        padding-right: 10px;
-        padding-bottom: 7px;
-        padding-left: 10px;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
-        cursor: pointer;
-        color: #060f17ff;
-        min-width: 70px;
-    }
-
-    .editor button.green {
-        background-color: #b8dbbaff;
-        color: #144017ff;
-    }
-
-    .editor button.red {
-        background-color: #d18a8aff;
-        color: #261414ff;
-    }
-
-    .editor button.green:hover {
-        background-color: #b2d1b4ff;
-    }
-
-    .editor button.dark {
-        color: #ffffffff;
-        background-color: #73899cff;
-    }
-
-    .editor button.dark:hover {
-        background-color: #617485ff;
-    }
-
-    .editor input,
-    .editor select {
-        padding-top: 7px;
-        padding-right: 10px;
-        padding-bottom: 7px;
-        padding-left: 10px;
-        border-style: none;
-        margin-right: 2px;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
-        box-sizing: border-box;
-        margin-bottom: 2px;
-        margin-top: 2px;
-        width: 130px;
-    }
-
-    .row:nth-child(even) {
-        background-color: #6997b8ff;
-    }
-
-    .row:nth-child(odd) {
-        background-color: #87acccff;
-    }
-</style>
+<style></style>
+<style scoped></style>

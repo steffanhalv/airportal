@@ -2,7 +2,7 @@
     <div class="block text-slate-100 bg-gradient-to-br from-slate-800 bg-slate-700 py-1">
         <h3 class="font-bold inline-block p-2">
             Airportal
-        </h3><select name="" @change="open()" v-model="current" class="px-2 py-1 ml-2 w-44">
+        </h3><select name="" @change="open()" v-model="current" class="px-2 py-1 ml-2 w-44 text-slate-800">
             <option v-for="domain in domains?.data" :value="domain.match">
                 {{ domain.match }}
             </option>

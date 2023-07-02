@@ -290,7 +290,8 @@
                     if (this.keys[field]?.type === "String") {
                         let obj = {};
                         obj[field] = {
-                            $regex: this.search
+                            $regex: this.search,
+                            $options: 'i'
                         };
                         query.$or.push(obj)
                     }

@@ -50,6 +50,7 @@
                         </button>
                     </div>
                 </div>
+                <div class="hidden col-span-1 col-span-2 col-span-3 col-span-4 col-span-5 col-span-6 col-span-7 col-span-8 col-span-9 grid-col-1 grid-col-2 grid-col-3 grid-col-4 grid-col-5 grid-col-6 grid-col-7 grid-col-8 grid-col-9"></div>
                 <div class="my-2 rounded grid bg-slate-100 p-4" :class="'grid-cols-' + (fieldsSelected.length + 4)">
                     <input v-model="search" placeholder="search..." @keydown.enter="list" class="rounded shadow-slate-200 shadow text-slate-700 px-5 grow" :class="'col-span-' + (fieldsSelected.length + 3)" /> <button type="" @click="list" class="shadow-slate-400 shadow rounded bg-gradient-to-bl bg-blue-500 from-blue-400 hover:bg-blue-600 text-slate-100 ml-2 py-2.5">
                         Search
@@ -291,7 +292,7 @@
                         let obj = {};
                         obj[field] = {
                             $regex: this.search,
-                            $options: 'i'
+                            $options: "i"
                         };
                         query.$or.push(obj)
                     }

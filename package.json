@@ -1,24 +1,27 @@
 {
-  "homepage": "https://jscomponent.com",
-  "name": "@jscomp/airportal",
-  "version": "1.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build"
-  },
-  "dependencies": {
-    "vue": "^3.2.47",
-    "vue-router": "^4.1.6",
-    "socket.io-client": "^4.5.1",
-    "@feathersjs/client": "^5.0.0-pre.28",
-    "monaco-editor": "^0.36.1"
-  },
-  "devDependencies": {
-    "@jscomponent/rollup": "^1.0.4",
-    "@rollup/plugin-data-uri": "^1.0.2",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "rollup-plugin-gzip": "^3.1.0",
-    "vite": "^4.1.1"
-  }
+    "homepage": "https://jscomponent.com",
+    "name": "@jscomp/airportal",
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+        "vue": "^3.2.47",
+        "vue-router": "^4.1.6",
+        "socket.io-client": "^4.5.1",
+        "@feathersjs/client": "^5.0.0-pre.28",
+        "monaco-editor": "^0.36.1"
+    },
+    "devDependencies": {
+        "@jscomponent/rollup": "^1.0.4",
+        "@rollup/plugin-data-uri": "^1.0.2",
+        "@vitejs/plugin-vue": "^4.0.0",
+        "rollup-plugin-gzip": "^3.1.0",
+        "vite": "^4.1.1",
+        "tailwindcss": "^3.3.2",
+        "autoprefixer": "^10.4.14",
+        "postcss": "^8.4.24"
+    }
 }

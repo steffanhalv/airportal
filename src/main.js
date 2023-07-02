@@ -1,3 +1,4 @@
+import '@/index.css'
 import {
     createApp,
     ref,
@@ -10,7 +11,7 @@ import sio from 'socket.io-client'
 
 const app = createApp(App)
 
-let domain = ['vueplay.com', 'www.vueplay.com', 'next.vueplay.com', 'localhost'].includes(parent?.location?.hostname) ? 'https://api.vueux.com' : '/'
+let domain = ['studio.vueplay.com', 'next.vueplay.com', 'localhost'].includes(parent?.location?.hostname) ? 'https://api.vueux.com' : '/'
 const socket = sio(domain, { // http://localhost:3001
     transports: ['websocket', 'polling']
 })
@@ -21,7 +22,7 @@ io.configure(feathers.authentication())
 
 let user = ref()
 
-io.reAuthenticate().then(() => { }).catch(e => { })
+io.reAuthenticate().then(() => {}).catch(e => {})
 
 router.beforeEach(async to => {
     try {

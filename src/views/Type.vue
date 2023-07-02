@@ -1,98 +1,96 @@
 <template>
-    <div style="display:flex;height:100%;font-family:Arial, Helvetica, sans-serif">
-        <div style="width:100%;flex-grow:1;flex:1;height:100%;overflow:auto;background-color:#edebebff" class="editor">
-            <div style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px">
-                <h2 style="color:#2b2b2bff;font-weight:100;font-size:35px">
+    <div class="p-6">
+        <div>
+            <div>
+                <h2 class="text-4xl">
                     {{instance?.title?.en}}
                 </h2>
             </div>
-            <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:15px;padding-bottom:15px;margin-left:20px;margin-right:20px;border-top-left-radius:3px;border-top-right-radius:3px;background-color:#86a0b3ff;position:relative;text-align:center;border-bottom-left-radius:3px;border-bottom-right-radius:3px">
-                <button type="" @click="view='main'" class="dark" style="margin-right:2px" :disabled="view==='main'">
+            <div class="text-center mt-6 mb-4 p-4 rounded bg-slate-100 p-4">
+                <button @click="view='main'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='main'">
                     {{instance?.title?.en}}
-                </button><button type="" @click="view='custom'" class="dark" style="margin-right:2px" v-if="decodedContent" :disabled="view==='custom'">
+                </button><button @click="view='custom'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" v-if="decodedContent" :disabled="view==='custom'">
                     Custom view
-                </button><button type="" @click="view='fields'" class="dark" style="margin-right:2px" :disabled="view==='fields'">
+                </button><button @click="view='fields'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='fields'">
                     Fields
-                </button><button type="" @click="view='roles'" class="dark" style="margin-right:2px" :disabled="view==='roles'">
+                </button><button @click="view='roles'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='roles'">
                     Roles
-                </button><button type="" @click="view='instance'" class="dark" style="margin-right:2px" :disabled="view==='instance'">
+                </button><button @click="view='instance'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='instance'">
                     Instance
-                </button><button type="" @click="view='custom-editor'" class="dark" style="margin-right:2px" :disabled="view==='custom-editor'">
+                </button><button @click="view='custom-editor'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 px-3" :disabled="view==='custom-editor'">
                     Custom editor
-                </button><button type="" @click="view='type'" class="dark" style="margin-right:2px" :disabled="view==='type'">
+                </button><button @click="view='type'" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark mx-0.5 mr-1 px-3" :disabled="view==='type'">
                     Type
-                </button><input v-model="instance.updatedAt" style="margin-left:10px;width:182px" /> <button type="" class="green" @click="saveType()">
+                </button><input :value="moment(instance.updatedAt).format('DD.MM.YY HH:mm:ss')" class="w-36 py-2 px-2 rounded mx-0.5 shadow-slate-200 shadow text-slate-700" /> <button class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-emerald-50 hover:text-white bg-emerald-400 hover:bg-emerald-500 px-3" @click="saveType()">
                     Save
                 </button>
             </div>
-            <div v-if="view==='custom'" style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;background-color:#ffffffff">
+            <div v-if="view==='custom'" class="my-2 rounded flex bg-slate-100 p-4">
                 <component :is="loadedComponent" />
             </div>
-            <div v-else-if="view==='main'">
-                <select v-model="fieldsSelected" multiple="multiple" style="margin-left:20px;margin-top:10px;width:calc(100% - 40px);height:104px">
+            <div v-else-if="view==='main'" class="my-2">
+                <select v-model="fieldsSelected" multiple="multiple" class="py-2 px-2 w-full">
                     <option v-for="field in fields" :value="field">
                         {{field}}
                     </option>
                 </select>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:15px;padding-bottom:15px;margin-left:20px;margin-right:20px;background-color:#86a0b3ff;position:relative;text-align:center;margin-top:10px;border-top-left-radius:3px;border-top-right-radius:3px">
-                    <button type="" @click="prevPage" style="float:left;margin-top:-5px" class="dark">
+                <div class="grid-cols-3 grid p-4 my-2 rounded flex bg-slate-100 p-4">
+                    <button type="" @click="prevPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page <= 1">
                         Previous page
-                    </button><span style="color:#38454dff">
+                    </button><span class="text-slate-600 py-2 text-center">
                         Page {{page}} of {{Math.ceil(responseRow?.total / responseRow?.limit)}} ({{responseRow?.skip}} - {{responseRow?.skip + responseRow?.data?.length}} of {{responseRow?.total}})
-                    </span><button type="" @click="nextPage" style="float:right;margin-top:-5px" class="dark">
+                    </span><button type="" @click="nextPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page >= Math.ceil(responseRow?.total / responseRow?.limit)">
                         Next page
                     </button>
                 </div>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;background-color:#86a0b3ff;margin-bottom:10px" class="row">
-                    <div style="display:inline-block">
-                        <input placeholder="id" readonly="" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" />
-                    </div><input placeholder="Created" readonly="" style="width:185px" /><input placeholder="Updated" readonly="" style="width:185px" />
-                    <div style="display:inline-block;float:right">
-                        <button type="" @click="create(obj)" class="green">
+                <div class="my-2 rounded flex bg-slate-100 p-4">
+                    <div class="gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)">
+                        <input placeholder="id" readonly="" class="p-2" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" /><input placeholder="Created" readonly="" class="p-2" /><button type="" @click="create(obj)" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-2">
                             Create
                         </button>
                     </div>
                 </div>
-                <div style="box-sizing:border-box;padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;background-color:#87acccff;border-top-left-radius:3px;border-top-right-radius:3px" class="row">
-                    <input style="margin-right:5px;width:calc(100% - 110px);padding-top:15px;padding-bottom:15px" v-model="search" placeholder="search..." @keydown.enter="list" /> <button type="" @click="list" class="dark" style="padding-top:15px;padding-bottom:15px;width:100px">
+                <div class="my-2 rounded flex bg-slate-100 p-4">
+                    <input v-model="search" placeholder="search..." @keydown.enter="list" class="shadow rounded px-5 grow" /> <button type="" @click="list" class="shadow-slate-400 shadow rounded bg-gradient-to-bl bg-blue-500 from-blue-400 hover:bg-blue-600 text-slate-100 px-6 ml-2 py-2.5">
                         Search
                     </button>
                 </div>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;margin-top:0px;margin-bottom:0px;position:relative" v-for="row in table" class="row">
-                    <div style="display:inline-block;float:right">
-                        <button type="" @click="remove(row)" class="red" style="margin-right:2px">
-                            Remove
-                        </button> <button type="" @click="save(row)" class="green">
-                            Save
-                        </button>
-                    </div>
-                    <div style="display:inline-block;">
-                        <div></div><input placeholder="ID" v-model="row._id" readonly="" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" /><input placeholder="Updated" v-model="row.updatedAt" readonly="" style="width:185px" /><input placeholder="Created" v-model="row.createdAt" readonly="" style="width:185px" />
+                <div v-for="row in table" class="my-2 rounded flex bg-slate-100 p-4">
+                    <div>
+                        <div class="grid-cols-9 grow gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)"><input placeholder="ID" v-model="row._id" readonly="" class="p-2" /><input v-model="row[key]" v-for="key in fieldsSelected" :placeholder="key" v-show="!row[key]?.en && !row[key]?.no" class="p-2" /><input placeholder="Updated" readonly="" class="p-2" :value="moment(row.updatedAt).format('DD.MM.YY HH:mm:ss')" /><input placeholder="Created" readonly="" class="p-2" :value="moment(row.createdAt).format('DD.MM.YY HH:mm:ss')" />
+                            <div class="text-right flex">
+                                <button type="" @click="remove(row)" class="w-6/12 bg-red-400 p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl from-red-500 hover:bg-red-600 text-slate-100 ml-1">
+                                    Remove
+                                </button> <button type="" @click="save(row)" class="w-6/12 p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-500 from-emerald-400 hover:bg-emerald-600 text-slate-100 ml-1">
+                                    Save
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div style="box-sizing:border-box;width:calc(100% - 40px);padding-left:20px;padding-right:20px;padding-top:20px;padding-bottom:20px;margin-left:20px;margin-right:20px;margin-top:10px;margin-bottom:20px;border-top-left-radius:3px;border-top-right-radius:3px;border-bottom-left-radius:3px;border-bottom-right-radius:3px;background-color:#86a0b3ff;position:relative;text-align:center">
-                    <button type="" @click="prevPage" style="float:left;margin-top:-5px" class="dark">
+                <div class="grid-cols-3 grid p-4 my-2 rounded flex bg-slate-100 p-4">
+                    <button type="" @click="prevPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page <= 1">
                         Previous page
-                    </button><span style="color:#38454dff">
+                    </button><span class="text-slate-600 py-2 text-center">
                         Page {{page}} of {{Math.ceil(responseRow?.total / responseRow?.limit)}} ({{responseRow?.skip}} - {{responseRow?.skip + responseRow?.data?.length}} of {{responseRow?.total}})
-                    </span><button type="" @click="nextPage" style="float:right;margin-top:-5px" class="dark">
+                    </span><button type="" @click="nextPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page >= Math.ceil(responseRow?.total / responseRow?.limit)">
                         Next page
                     </button>
                 </div>
             </div>
-            <div v-else-if="view==='fields'" style="margin-right:20px;margin-bottom:20px;margin-left:20px;margin-top:10px;height:calc(100% - 190px)">
+            <div v-else-if="view==='fields'" class="my-2 rounded flex bg-slate-100 p-4">
                 <Editor @change="instance.fieldsValue = $event" :src="instance.fieldsValue" />
             </div>
-            <div v-else-if="view==='roles'" style="margin-right:20px;margin-bottom:20px;margin-left:20px;margin-top:10px;height:calc(100% - 190px)">
+            <div v-else-if="view==='roles'" class="my-2 rounded flex bg-slate-100 p-4">
                 <Editor @change="instance.rolesValue = $event" :src="instance.rolesValue" />
             </div>
-            <div v-else-if="view==='instance'" style="margin-right:20px;margin-bottom:20px;margin-left:20px;margin-top:10px;height:calc(100% - 190px)">
+            <div v-else-if="view==='instance'" class="my-2 rounded flex bg-slate-100 p-4">
                 <Editor @change="instance.instanceValue = $event" :src="instance.instanceValue" />
             </div>
-            <div v-else-if="view==='custom-editor'" style="margin-right:20px;margin-bottom:20px;margin-left:20px;margin-top:10px;height:calc(100% - 190px)">
+            <div v-else-if="view==='custom-editor'" class="my-2 rounded flex bg-slate-100 p-4">
                 <Editor @change="instance.dashboardValue = $event" :src="instance.dashboardValue" />
             </div>
-            <div v-else-if="view==='type'" style="margin-right:20px;margin-bottom:20px;margin-left:20px;margin-top:10px;height:calc(100% - 190px)">
+            <div v-else-if="view==='type'" class="my-2 rounded flex bg-slate-100 p-4">
                 <div>
                     <label>
                         ID
@@ -120,7 +118,7 @@
                 </div>
                 <div>
                     <label>
-                        Owner group
+                        Owner Group
                     </label><input v-model="instance.owner_group" />
                 </div>
                 <div>
@@ -133,12 +131,12 @@
                         Created
                     </label><input v-model="instance.createdAt" />
                 </div>
-                <div style="margin-top:20px">
+                <div>
                     <button type="" class="green" @click="saveType()">
                         Save
                     </button>
                 </div>
-                <div style="margin-top:20px">
+                <div>
                     <button type="" class="red" @click="removeType()">
                         Delete
                     </button>
@@ -152,6 +150,7 @@
         defineAsyncComponent
     } from "vue";
     import Editor from "@/components/Editor.vue";
+    import moment from "moment";
     export default {
         setup() {},
         components: {
@@ -175,7 +174,8 @@
             custom: true,
             view: "main",
             loaded: false,
-            fieldsSelected: []
+            fieldsSelected: [],
+            moment
         }),
         computed: {
             instance() {
@@ -365,88 +365,3 @@
         }
     };
 </script>
-<style>
-    html,
-    body,
-    #app {
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 0px;
-        margin-bottom: 0px;
-    }
-</style>
-<style scoped>
-    label {
-        display: block;
-        margin-top: 10px;
-        margin-bottom: 5px;
-    }
-
-    .editor button:hover {
-        background-color: #ffffffff;
-    }
-
-    .editor button {
-        border-style: none;
-        padding-top: 7px;
-        padding-right: 10px;
-        padding-bottom: 7px;
-        padding-left: 10px;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
-        cursor: pointer;
-        color: #060f17ff;
-        min-width: 70px;
-    }
-
-    .editor button.green {
-        background-color: #b8dbbaff;
-        color: #144017ff;
-    }
-
-    .editor button.red {
-        background-color: #d18a8aff;
-        color: #261414ff;
-    }
-
-    .editor button.green:hover {
-        background-color: #b2d1b4ff;
-    }
-
-    .editor button.dark {
-        color: #ffffffff;
-        background-color: #73899cff;
-    }
-
-    .editor button.dark:hover {
-        background-color: #617485ff;
-    }
-
-    .editor input,
-    .editor select {
-        padding-top: 7px;
-        padding-right: 10px;
-        padding-bottom: 7px;
-        padding-left: 10px;
-        border-style: none;
-        margin-right: 2px;
-        border-top-left-radius: 2px;
-        border-top-right-radius: 2px;
-        border-bottom-left-radius: 2px;
-        border-bottom-right-radius: 2px;
-        box-sizing: border-box;
-        margin-bottom: 2px;
-        margin-top: 2px;
-        width: 130px;
-    }
-
-    .row:nth-child(even) {
-        background-color: #6997b8ff;
-    }
-
-    .row:nth-child(odd) {
-        background-color: #87acccff;
-    }
-</style>

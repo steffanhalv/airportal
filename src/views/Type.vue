@@ -23,8 +23,7 @@
                     Type
                 </button><input :value="moment(instance.updatedAt).format('DD.MM.YY HH:mm:ss')" class="w-40 py-2 px-2 mx-0.5 rounded shadow-slate-200 shadow text-slate-700 mb-2" /> <button class="disabled:opacity-25 cursor-pointer shadow-slate-300 shadow rounded py-2 text-emerald-50 hover:text-white bg-emerald-400 hover:bg-emerald-500 px-3 mb-2" @click="saveType()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mx-auto">
                         <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
-                    </svg>
-                </button>
+                    </svg> </button>
             </div>
             <div v-if="view==='custom'" class="my-2 rounded flex bg-slate-100 p-4 overflow-auto">
                 <component :is="loadedComponent" />
@@ -38,17 +37,16 @@
                 <div class="grid-cols-3 grid p-4 my-2 rounded flex bg-slate-100 p-4">
                     <button type="" @click="prevPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page <= 1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mx-auto">
                             <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.06-1.06l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z" clip-rule="evenodd" />
-                        </svg>
-                    </button><span class="text-slate-600 py-2 text-center">
+                        </svg> </button><span class="text-slate-600 py-2 text-center">
                         Page {{page}} of {{Math.ceil(responseRow?.total / responseRow?.limit)}} ({{responseRow?.skip}} - {{responseRow?.skip + responseRow?.data?.length}} of {{responseRow?.total}})
                     </span><button type="" @click="nextPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page >= Math.ceil(responseRow?.total / responseRow?.limit)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mx-auto">
                             <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
+                        </svg> </button>
                 </div>
                 <div class="my-2 rounded flex bg-slate-100 p-4">
                     <div class="gap-1 grid" :class="'grid-cols-' + (fieldsSelected.length + 4)">
-                        <input placeholder="id" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Updated" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Created" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><button type="" @click="create(obj)" class="p-2 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-400 from-emerald-300 hover:bg-emerald-500 text-slate-100 ml-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mx-auto">
+                        <input placeholder="id" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input v-model="obj[key]" v-for="key in fieldsSelected" :placeholder="key" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Updated" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><input placeholder="Created" readonly="" class="p-2 rounded shadow-slate-200 shadow text-slate-700" /><button type="" @click="create(obj)" class="col-span-1 shadow-slate-400 shadow rounded bg-gradient-to-bl bg-emerald-400 from-emerald-300 hover:bg-emerald-500 text-slate-100 ml-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mx-auto">
                                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 9a.75.75 0 00-1.5 0v2.25H9a.75.75 0 000 1.5h2.25V15a.75.75 0 001.5 0v-2.25H15a.75.75 0 000-1.5h-2.25V9z" clip-rule="evenodd" />
                             </svg> </button>
                     </div>
@@ -75,13 +73,11 @@
                 <div class="grid-cols-3 grid p-4 my-2 rounded flex bg-slate-100 p-4">
                     <button type="" @click="prevPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page <= 1"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mx-auto">
                             <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-4.28 9.22a.75.75 0 000 1.06l3 3a.75.75 0 101.06-1.06l-1.72-1.72h5.69a.75.75 0 000-1.5h-5.69l1.72-1.72a.75.75 0 00-1.06-1.06l-3 3z" clip-rule="evenodd" />
-                        </svg>
-                    </button><span class="text-slate-600 py-2 text-center">
+                        </svg> </button><span class="text-slate-600 py-2 text-center">
                         Page {{page}} of {{Math.ceil(responseRow?.total / responseRow?.limit)}} ({{responseRow?.skip}} - {{responseRow?.skip + responseRow?.data?.length}} of {{responseRow?.total}})
                     </span><button type="" @click="nextPage" class="disabled:opacity-25 cursor-pointer hover:text-slate-100 hover:bg-slate-400 shadow-slate-300 shadow rounded py-2 text-slate-700 bg-slate-300 dark" :disabled="page >= Math.ceil(responseRow?.total / responseRow?.limit)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 mx-auto">
                             <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm4.28 10.28a.75.75 0 000-1.06l-3-3a.75.75 0 10-1.06 1.06l1.72 1.72H8.25a.75.75 0 000 1.5h5.69l-1.72 1.72a.75.75 0 101.06 1.06l3-3z" clip-rule="evenodd" />
-                        </svg>
-                    </button>
+                        </svg> </button>
                 </div>
             </div>
             <div v-else-if="view==='fields'" class="my-2 rounded flex-1 bg-slate-100">

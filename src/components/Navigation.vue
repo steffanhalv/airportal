@@ -1,5 +1,5 @@
 <template>
-    <div class="w-44 h-full text-slate-100 bg-gradient-to-br from-slate-800 bg-slate-700">
+    <div class="w-44 h-full text-slate-100 bg-gradient-to-br from-slate-800 bg-slate-700 overflow-auto">
         <div v-for="page in pages">
             <div style="box-sizing:border-box;padding-left:10px;padding-right:10px;padding-top:10px;padding-bottom:10px;position:relative" class="menu-button" :class="page.path === current ? 'active' : ''" @click="$router.push(page.path)">
                 <div style="background-color:#edebebff;width:10px;position:absolute;right:0px;clip-path:polygon(100% 0%, 100% 100%, 0% 50%);top:13px;height:20px" v-if="page.path === current"></div>

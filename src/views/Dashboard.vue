@@ -6,7 +6,7 @@
             <Navigation path="/admin/services" v-if="!minimal" :renderkey="!minimal ? renderkey : ''" @list="refresh()">
             </Navigation>
             <div style="width:100%;height:100%;overflow:auto;position:relative;flex:1">
-                <router-view style="width:100%;height:100%;overflow:auto;background-color:#edebebff;position:absolute" :min="true" @list="refresh()">
+                <router-view class="bg-slate-50 w-full h-full overflow-auto absolute" :min="true" @list="refresh()">
                 </router-view>
             </div>
         </div>
